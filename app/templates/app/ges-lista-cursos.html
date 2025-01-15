@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form action="/mcur/" method="get">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          
+          
+          <div class="col-md-4">
+              <label class="form-label" for="">ID/Nombre</label>
+              <input class="form-control" value="{{rutnombre}}" type="text" placeholder="RUT o Nombre" name="rutnombre" />
+          </div>
+          <div class="col-md-3">
+            <div>
+              <label class="form-label" for="">Desde</label>
+              <input class="form-control" name="fecha_desde" type="datetime-local"  id="fecha_desde"  value="{{desde}}"/>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div>
+              <label class="form-label" for="fecha_hasta">Hasta</label>
+              <input class="form-control" name="fecha_hasta" type="datetime-local"  id="fecha_hasta"  value="{{hasta}}" />
+            </div>
+          </div>
+          <div class="col-md-2">
+              <button type="submit" id ="btnFiltro" class="btn btn-primary">Filtrar</button>
+              <a  class="btn btn-primary" href="/curso/?accion=crear">Nuevo</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">ID</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Descripción</th>
+        <th scope="col">Fecha Inicio</th>
+        <th scope="col">Fecha Término</th>
+        <th scope="col">Activo</th>
+        <th scope="col">Accion</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for curso in listado %}
+        <tr>
+          <td></td>
+          <td>{{ curso.id }}</td>
+          <td>{{ curso.nombre }}</td>
+          <td>{{ curso.descripcion }}</td>
+          <td>{{ curso.fecha_inicio|date:"d/m/Y" }}</td>
+          <td>{{ curso.fecha_fin|date:"d/m/Y" }}</td>
+          <td>{{ curso.activo }}</td>
+          <td>
+            <a class="bi bi-pencil-fill" href="/curso/?accion=editar&id={{curso.id}}"></a>
+            <i class="bi bi-database-add"></i>
+            <a class="bi bi-trash-fill" href="/curso/?accion=eliminar&id={{curso.id}}"></a>
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+ 
+{% endblock %}

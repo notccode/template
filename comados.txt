@@ -1,0 +1,21 @@
+#Funcionalidades del template (hoy 100%)
+1. Mensajes al usuario (errores, mensajes, ad... ) son con un toast (90%)
+2. Un formulario modal de confirmación (90%)
+3. Menú lateral debe ser un componente configurable 100% desde un json (icono, mensaje, url)
+el jason se genera según un grupo de usuario (100%)
+4. ocupar usuario, seguridad y mensajería de django (100%)
+5. definir un template base para todos los formularios centrales (0%)
+
+#modelo
+python3 manage.py makemigrations #crea los archivos para pasarlos a la base de datos
+python3 manage.py migrate #pasa los modelos creados con makemigrations a la base de datos
+
+#seguridad
+
+#datos
+
+#Recursos gráficos
+https://icons.getbootstrap.com/
+
+
+

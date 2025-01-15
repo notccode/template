@@ -1,0 +1,30 @@
+ 
+
+<div class="toast-container position-fixed bottom-0 end-0 p-3">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <i id="toastIcono" class="bi bi-airplane-fill"></i>
+      <strong class="me-auto" id="toastTitulo"></strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div id="toastMensaje" class="toast-body">
+    </div>
+  </div>
+</div>
+
+<script>
+    var toastBootstrap
+    function showToast(titulo, mensaje, iconoStyle){
+        setTimeout(function(){
+            document.getElementById("toastTitulo").innerHTML = titulo
+            document.getElementById("toastMensaje").innerHTML = mensaje
+            document.getElementById("toastIcono").className = iconoStyle
+            toastBootstrap.show()
+        }, 100)
+    }
+    
+    document.addEventListener("DOMContentLoaded", function(){
+        var toastLiveExample = document.getElementById('liveToast')
+        toastBootstrap = bootstrap.Toast.getOrCreateInstance(toastLiveExample)
+    })
+</script>

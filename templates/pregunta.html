@@ -1,0 +1,36 @@
+<!-- Button trigger modal -->
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="modelPregunta" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="modalPreguntaTitulo">{{titulo}}</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body" id="modalPreguntaMensaje">
+          {{mensaje}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary" id="modalPreguntaAceptar">Aceptar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      var funcioEjecutarAceptar = function() {}
+      function modalPreguntaFunOk(titulo, mensaje, func){
+          document.getElementById("modalPreguntaTitulo").innerText = titulo
+          document.getElementById("modalPreguntaMensaje").innerText = mensaje
+          funcioEjecutarAceptar = func
+        }
+      document.addEventListener("DOMContentLoaded", function(){
+        var botonAceptar = document.getElementById("modalPreguntaAceptar")
+        botonAceptar.addEventListener("click", ()=>{
+             funcioEjecutarAceptar()
+          })
+      })
+  </script>

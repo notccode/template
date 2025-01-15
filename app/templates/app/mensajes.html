@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+{% endblock %}
+
+{% block content %}
+    <form action="/mensajes/" method="GET">
+      <input type="hidden" name="opcion" value="crea_ok">
+      <button type="submit" class="btn btn-primary" >Crear Resgitro OK</button>
+    </form>
+
+    <form action="/mensajes/" method="GET">
+      <input type="hidden" name="opcion" value="crea_error">
+      <button type="submit" class="btn btn-primary" >Crear Resgitro Error</button>
+    </form>
+
+    <form id="formEliminarRegistro" action="/mensajes/" method="GET">
+      <input type="hidden" name="opcion" value="eliminar">
+    </form>
+    
+  
+    <!--Funcionalidad de confirmación 100% funcional-->
+    <button type="submit" 
+    class="btn btn-primary" 
+    data-bs-toggle="modal" 
+    data-bs-target="#modelPregunta"
+    onclick="modalPreguntaFunOk(
+      'Eliminar Registro',
+      'Está seguro que desea eliminar el registro actual?',
+      function(){document.getElementById('formEliminarRegistro').submit()})"
+    >Eliminar Registro</button>
+    <!--*********************************************-->
+
+    <form action="/mensajes/" method="GET">
+      <input type="hidden" name="opcion" value="alerta">
+      <button type="submit" class="btn btn-primary">Mostrar Alerta</button>
+    </form>
+
+    {% endblock content %}

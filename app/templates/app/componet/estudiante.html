@@ -1,0 +1,74 @@
+<div class="modal fade" id="modalEstudiante" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Estudiante</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form action="/estudiante/" method="post" id="formularioEstudiante">
+          {% csrf_token %}
+          <input type="hidden" id="accion" name="accion" />
+          <input type="hidden" id="url" name="url"  />
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">RUT</span>
+            <input type="text" name="rut" id="rut" class="form-control" placeholder="Ingrese RUT" aria-label="rut" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">Nombre</span>
+            <input type="text" name="nombre" id="nombre"  class="form-control" placeholder="Ingrese nombre completo" aria-label="nombre" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">Correo</span>
+            <input type="text" name="email" id="email" class="form-control" placeholder="Ingrese correo electrónico" aria-label="email" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <h3 id="msgerror"></h3>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+            <button type="button"  class="btn btn-primary">Aceptar</button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+ 
+  var showForm = function(){}
+  var myModal;
+
+  document.addEventListener('DOMContentLoaded', function() {
+    myModal = new bootstrap.Modal(document.getElementById('modalEstudiante'), {
+      keyboard: false
+    });
+
+    showForm = function(accion, url, estudiante){
+      document.getElementById('rut').value = estudiante.rut;
+      document.getElementById('nombre').value = estudiante.nombre;
+      document.getElementById('email').value = estudiante.email;
+      document.getElementById('accion').value = accion;
+      document.getElementById('url').value = url;
+
+      const btn = document.getElementById('btn-aceptar');
+      btn.setAttribute('onclick', 'grabarEstudiante()');
+
+      /*
+      if(accion == 'eliminar'){
+        //btn.setAttribute('onclick', 'modalPreguntaFunOk("Eliminar Registro", "Está seguro que desea eliminar el registro actual?", function(){document.getElementById(\'formularioEstudiante\').submit()})');
+
+      } else if(accion == 'crear'){
+        //btn.setAttribute('onclick', 'document.getElementById(\'formularioEstudiante\').submit()');
+        btn.setAttribute('onclick', 'grabarEstudiante()');
+      } else if(accion == 'editar'){
+        //btn.setAttribute('onclick', 'document.getElementById(\'formularioEstudiante\').submit()');
+        btn.setAttribute('onclick', 'grabarEstudiante()');
+      }
+      */
+      myModal.show();
+    }
+  });
+</script>

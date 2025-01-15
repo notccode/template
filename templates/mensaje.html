@@ -1,0 +1,26 @@
+<div class="modal fade" id="modelMensaje" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{base.modalMensaje.titulo}}</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <i class="{{base.modalMensaje.iconostyle}}"></i>
+      <div class="modal-body">
+        {{base.modalMensaje.mensaje}}
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% if base.modalMensaje.titulo %}
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const modelMensaje = new bootstrap.Modal(document.getElementById('modelMensaje'));
+    modelMensaje.show();
+  });
+</script>
+{% endif %}

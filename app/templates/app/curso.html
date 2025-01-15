@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content-titulo %}
+  {{titulo}}
+{% endblock %}
+
+{% block content %}
+
+<div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form action="/curso/" method="post">
+          {% csrf_token %}
+          <input type="hidden" id="accion" name="accion" value="{{accion}}" />
+          <input type="hidden" id="url" name="url"  />
+ 
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">ID</span>
+            <input  readonly value="{{curso.id}}" type="text" name="id"  class="form-control" placeholder="Ingrese RUT" aria-label="id" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">Nombre</span>
+            <input {% if accion == 'eliminar' %} readonly {% endif %} value="{{curso.nombre}}" type="text" name="nombre"  class="form-control" placeholder="Ingrese nombre completo" aria-label="nombre" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">Descripción</span>
+            <textarea {% if accion == 'eliminar' %} readonly {% endif %}   rows="4" name="descripcion"  class="form-control" placeholder="Ingrese descripción" aria-label="descripcion" aria-describedby="basic-addon1" >
+              {{curso.descripcion}}
+            </textarea>
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text"  >Fecha Inicio</span>
+            <input {% if accion == 'eliminar' %} readonly {% endif %} value="{{curso.fecha_inicio|date:'Y-m-d'}}" type="date" name="fecha_inicio"  class="form-control" placeholder="Ingrese fecha inicio" aria-label="fecha_inicio" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text">Fecha Término</span>
+            <input {% if accion == 'eliminar' %} readonly {% endif %} value="{{curso.fecha_fin|date:'Y-m-d'}}" type="date" name="fecha_fin"  class="form-control" placeholder="Ingrese fecha fin" aria-label="fecha_fin" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">Activo</span>
+            <input {% if accion == 'eliminar' %} readonly {% endif %}  type="checkbox" name="activo"  {% if curso.activo %} checked {% endif %}  >
+          </div>
+
+          
+          <div class="modal-footer">
+ 
+            {% if accion == 'eliminar' %} 
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            {% elif accion == 'crear' %}
+                <button type="submit" class="btn btn-primary">Crear</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary">Grabar</button>
+            {% endif %}
+            
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+{% endblock content %}
+
