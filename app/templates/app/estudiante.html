@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block content-titulo %}
+  {{titulo}}
+{% endblock %}
+
+{% block content %}
+
+<div>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <form action="/estudiante/" method="post">
+          {% csrf_token %}
+          <input type="hidden" id="accion" name="accion" value="{{accion}}" />
+          <input type="hidden" id="url" name="url"  />
+ 
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">RUT</span>
+            <input {% if accion != 'crear' %} readonly {% endif %} value="{{estudiante.rut}}" type="text" name="rut"  class="form-control" placeholder="Ingrese RUT" aria-label="rut" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">Nombre</span>
+            <input {% if accion == 'eliminar' %} readonly {% endif %} value="{{estudiante.nombre}}" type="text" name="nombre"  class="form-control" placeholder="Ingrese nombre completo" aria-label="nombre" aria-describedby="basic-addon1" />
+          </div>
+          <div class="input-group mb-3">
+            <span class="input-group-text" style="width: 150px;">Correo</span>
+            <input {% if accion == 'eliminar' %} readonly {% endif %} value="{{estudiante.email}}" type="text" name="email"  class="form-control" placeholder="Ingrese correo electrónico" aria-label="email" aria-describedby="basic-addon1" />
+          </div>
+          
+          <div class="modal-footer">
+ 
+            {% if accion == 'eliminar' %} 
+                <button type="submit" class="btn btn-danger">Eliminar</button>
+            {% elif accion == 'crear' %}
+                <button type="submit" class="btn btn-primary">Crear</button>
+            {% else %}
+                <button type="submit" class="btn btn-primary">Grabar</button>
+            {% endif %}
+            
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+{% endblock content %}
+
